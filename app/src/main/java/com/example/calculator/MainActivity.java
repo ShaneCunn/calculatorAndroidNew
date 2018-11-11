@@ -7,10 +7,12 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
-    Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button0, buttonDot, buttonClear;
+    Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button0, buttonDot, buttonClear, buttonPlus, buttonMinus, buttonDivide, buttonMulti, buttonEqual;
     EditText editTextDisplay;
 
-    boolean hasDecimal = false;
+    boolean hasDecimal, add, minus, divide, multi;
+
+    float valueOne, valueTwo, result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
         button0 = (Button) findViewById(R.id.button0);
         buttonDot = (Button) findViewById(R.id.buttonDot);
         buttonClear = (Button) findViewById(R.id.buttonAC);
+        buttonPlus = (Button) findViewById(R.id.buttonPlus);
+        buttonMinus = (Button) findViewById(R.id.buttonMinus);
+        buttonDivide = (Button) findViewById(R.id.buttonDivide);
+        buttonMulti = (Button) findViewById(R.id.buttonMulti);
+        buttonEqual = (Button) findViewById(R.id.buttonEqual);
 
         editTextDisplay = (EditText) findViewById(R.id.displayTV);
 
@@ -165,5 +172,78 @@ public class MainActivity extends AppCompatActivity {
                 hasDecimal = false;
             }
         });
+        buttonPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valueOne = Float.parseFloat(editTextDisplay.getText() + "");
+                add = true;
+                editTextDisplay.setText(null);
+                hasDecimal = false;
+            }
+        });
+        buttonMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valueOne = Float.parseFloat(editTextDisplay.getText() + "");
+                minus = true;
+                editTextDisplay.setText(null);
+                hasDecimal = false;
+            }
+        });
+        buttonMulti.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valueOne = Float.parseFloat(editTextDisplay.getText() + "");
+                multi = true;
+                editTextDisplay.setText(null);
+                hasDecimal = false;
+            }
+        });
+        buttonDivide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valueOne = Float.parseFloat(editTextDisplay.getText() + "");
+                divide = true;
+                editTextDisplay.setText(null);
+                hasDecimal = false;
+            }
+        });
+
+
+        buttonEqual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valueTwo = Float.parseFloat(editTextDisplay.getText() + "");
+                // add = true;
+
+                if (add == true) {
+                    result = valueOne + valueTwo;
+                    editTextDisplay.setText(result + "");
+                    add = false;
+                    hasDecimal = false;
+                }
+                if (minus == true) {
+                    result = valueOne - valueTwo;
+                    editTextDisplay.setText(result + "");
+                    minus = false;
+                    hasDecimal = false;
+                }
+                if (multi == true) {
+                    result = valueOne * valueTwo;
+                    editTextDisplay.setText(result + "");
+                    multi = false;
+                    hasDecimal = false;
+                }
+                if (divide == true) {
+                    result = valueOne + valueTwo;
+                    editTextDisplay.setText(result + "");
+                    divide = false;
+                    hasDecimal = false;
+                }
+
+            }
+        });
+
+
     }
 }
