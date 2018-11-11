@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
-    Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button0, buttonDot, buttonClear, buttonPlus, buttonMinus, buttonDivide, buttonMulti, buttonEqual, buttonPercent;
+    Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button0, buttonDot, buttonClear, buttonPlus, buttonMinus, buttonDivide, buttonMulti, buttonEqual, buttonPercent, buttonDelete;
     EditText editTextDisplay;
 
     boolean hasDecimal, add, minus, divide, multi;
@@ -20,26 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        button1 = (Button) findViewById(R.id.button1);
-        button2 = (Button) findViewById(R.id.button2);
-        button3 = (Button) findViewById(R.id.button3);
-        button4 = (Button) findViewById(R.id.button4);
-        button5 = (Button) findViewById(R.id.button5);
-        button6 = (Button) findViewById(R.id.button6);
-        button7 = (Button) findViewById(R.id.button7);
-        button8 = (Button) findViewById(R.id.button8);
-        button9 = (Button) findViewById(R.id.button9);
-        button0 = (Button) findViewById(R.id.button0);
-        buttonDot = (Button) findViewById(R.id.buttonDot);
-        buttonClear = (Button) findViewById(R.id.buttonAC);
-        buttonPlus = (Button) findViewById(R.id.buttonPlus);
-        buttonMinus = (Button) findViewById(R.id.buttonMinus);
-        buttonDivide = (Button) findViewById(R.id.buttonDivide);
-        buttonMulti = (Button) findViewById(R.id.buttonMulti);
-        buttonEqual = (Button) findViewById(R.id.buttonEqual);
-        buttonPercent = (Button) findViewById(R.id.buttonPercent);
-
-        editTextDisplay = (EditText) findViewById(R.id.displayTV);
+        initControls();
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -253,5 +234,47 @@ public class MainActivity extends AppCompatActivity {
                 editTextDisplay.setText(String.valueOf(result));
             }
         });
+
+
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String result = editTextDisplay.getText().toString();
+                if (result.length() > 0) {
+                    editTextDisplay.setText(result.substring(0, result.length() - 1));
+                    if (result.isEmpty()) {
+
+                        result = "0";
+                        editTextDisplay.setText("0");
+                    }
+
+                }
+
+            }
+        });
     }
+
+    private void initControls() {
+        button1 = (Button) findViewById(R.id.button1);
+        button2 = (Button) findViewById(R.id.button2);
+        button3 = (Button) findViewById(R.id.button3);
+        button4 = (Button) findViewById(R.id.button4);
+        button5 = (Button) findViewById(R.id.button5);
+        button6 = (Button) findViewById(R.id.button6);
+        button7 = (Button) findViewById(R.id.button7);
+        button8 = (Button) findViewById(R.id.button8);
+        button9 = (Button) findViewById(R.id.button9);
+        button0 = (Button) findViewById(R.id.button0);
+        buttonDot = (Button) findViewById(R.id.buttonDot);
+        buttonClear = (Button) findViewById(R.id.buttonAC);
+        buttonPlus = (Button) findViewById(R.id.buttonPlus);
+        buttonMinus = (Button) findViewById(R.id.buttonMinus);
+        buttonDivide = (Button) findViewById(R.id.buttonDivide);
+        buttonMulti = (Button) findViewById(R.id.buttonMulti);
+        buttonEqual = (Button) findViewById(R.id.buttonEqual);
+        buttonPercent = (Button) findViewById(R.id.buttonPercent);
+        buttonDelete = (Button) findViewById(R.id.buttonDel);
+        editTextDisplay = (EditText) findViewById(R.id.displayTV);
+    }
+
 }
