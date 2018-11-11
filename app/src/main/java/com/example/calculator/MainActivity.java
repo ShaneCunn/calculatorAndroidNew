@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
-    Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button0, buttonDot, buttonClear, buttonPlus, buttonMinus, buttonDivide, buttonMulti, buttonEqual;
+    Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button0, buttonDot, buttonClear, buttonPlus, buttonMinus, buttonDivide, buttonMulti, buttonEqual, buttonPercent;
     EditText editTextDisplay;
 
     boolean hasDecimal, add, minus, divide, multi;
@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         buttonDivide = (Button) findViewById(R.id.buttonDivide);
         buttonMulti = (Button) findViewById(R.id.buttonMulti);
         buttonEqual = (Button) findViewById(R.id.buttonEqual);
+        buttonPercent = (Button) findViewById(R.id.buttonPercent);
 
         editTextDisplay = (EditText) findViewById(R.id.displayTV);
 
@@ -218,25 +219,25 @@ public class MainActivity extends AppCompatActivity {
 
                 if (add == true) {
                     result = valueOne + valueTwo;
-                    editTextDisplay.setText(result + "");
+                    editTextDisplay.setText(String.valueOf(result));
                     add = false;
                     hasDecimal = false;
                 }
                 if (minus == true) {
                     result = valueOne - valueTwo;
-                    editTextDisplay.setText(result + "");
+                    editTextDisplay.setText(String.valueOf(result));
                     minus = false;
                     hasDecimal = false;
                 }
                 if (multi == true) {
                     result = valueOne * valueTwo;
-                    editTextDisplay.setText(result + "");
+                    editTextDisplay.setText(String.valueOf(result));
                     multi = false;
                     hasDecimal = false;
                 }
                 if (divide == true) {
                     result = valueOne + valueTwo;
-                    editTextDisplay.setText(result + "");
+                    editTextDisplay.setText(String.valueOf(result));
                     divide = false;
                     hasDecimal = false;
                 }
@@ -244,6 +245,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        buttonPercent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valueOne = Float.parseFloat(editTextDisplay.getText() + "");
+                result = valueOne / 100;
+                editTextDisplay.setText(String.valueOf(result));
+            }
+        });
     }
 }
