@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     boolean hasDecimal, add, minus, divide, multi;
 
-    double valueOne, valueTwo, result, data;
+    double valueOne = 0.0, valueTwo = 0.0, result = 0.0, data = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,119 +25,69 @@ public class MainActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                data = Double.parseDouble(editTextDisplay.getText().toString());
-                if (data == 0) {
-                    editTextDisplay.setText("1");
-                } else {
-                    editTextDisplay.setText(editTextDisplay.getText() + "1");
-                }
+                setDisplayValue("1");
             }
         });
 
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                data = Double.parseDouble(editTextDisplay.getText().toString());
-                if (data == 0) {
-                    editTextDisplay.setText("2");
-                } else {
-                    editTextDisplay.setText(editTextDisplay.getText() + "2");
-                }
+                setDisplayValue("2");
             }
         });
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                data = Double.parseDouble(editTextDisplay.getText().toString());
-                if (data == 0) {
-                    editTextDisplay.setText("3");
-                } else {
-                    editTextDisplay.setText(editTextDisplay.getText() + "3");
-                }
+                setDisplayValue("3");
             }
         });
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                data = Double.parseDouble(editTextDisplay.getText().toString());
-                if (data == 0) {
-                    editTextDisplay.setText("4");
-                } else {
-                    editTextDisplay.setText(editTextDisplay.getText() + "4");
-                }
+                setDisplayValue("4");
             }
         });
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                data = Double.parseDouble(editTextDisplay.getText().toString());
-                if (data == 0) {
-                    editTextDisplay.setText("5");
-                } else {
-                    editTextDisplay.setText(editTextDisplay.getText() + "5");
-                }
+                setDisplayValue("5");
             }
         });
         button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                data = Double.parseDouble(editTextDisplay.getText().toString());
-                if (data == 0) {
-                    editTextDisplay.setText("6");
-                } else {
-                    editTextDisplay.setText(editTextDisplay.getText() + "6");
-                }
+                setDisplayValue("6");
             }
         });
         button7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                data = Double.parseDouble(editTextDisplay.getText().toString());
-                if (data == 0) {
-                    editTextDisplay.setText("7");
-                } else {
-                    editTextDisplay.setText(editTextDisplay.getText() + "7");
-                }
+                setDisplayValue("7");
             }
         });
         button8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                data = Double.parseDouble(editTextDisplay.getText().toString());
-                if (data == 0) {
-                    editTextDisplay.setText("8");
-                } else {
-                    editTextDisplay.setText(editTextDisplay.getText() + "8");
-                }
+                setDisplayValue("8");
             }
         });
         button9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                data = Double.parseDouble(editTextDisplay.getText().toString());
-                if (data == 0) {
-                    editTextDisplay.setText("9");
-                } else {
-                    editTextDisplay.setText(editTextDisplay.getText() + "9");
-                }
+                setDisplayValue("9");
             }
         });
         button0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                data = Double.parseDouble(editTextDisplay.getText().toString());
-                if (data == 0) {
-                    editTextDisplay.setText("0");
-                } else {
-                    editTextDisplay.setText(editTextDisplay.getText() + "0");
-                }
+                setDisplayValue("0");
             }
         });
 
         buttonDot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String test = editTextDisplay.getText().toString();
+                data = Double.parseDouble(editTextDisplay.getText().toString());
                 if (hasDecimal == false) {
                     // editTextDisplay.setText("0");
                     editTextDisplay.setText(editTextDisplay.getText() + ".");
@@ -157,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         buttonPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                valueOne = Double.parseDouble(editTextDisplay.getText() + "");
+                valueOne = Double.parseDouble(String.valueOf(editTextDisplay.getText()));
                 add = true;
                 editTextDisplay.setText(null);
                 hasDecimal = false;
@@ -166,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         buttonMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                valueOne = Double.parseDouble(editTextDisplay.getText() + "");
+                valueOne = Double.parseDouble(String.valueOf(editTextDisplay.getText()));
                 minus = true;
                 editTextDisplay.setText(null);
                 hasDecimal = false;
@@ -175,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         buttonMulti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                valueOne = Double.parseDouble(editTextDisplay.getText() + "");
+                valueOne = Double.parseDouble(String.valueOf(editTextDisplay.getText()));
                 multi = true;
                 editTextDisplay.setText(null);
                 hasDecimal = false;
@@ -184,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         buttonDivide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                valueOne = Double.parseDouble(editTextDisplay.getText() + "");
+                valueOne = Double.parseDouble(String.valueOf(editTextDisplay.getText()));
                 divide = true;
                 editTextDisplay.setText(null);
                 hasDecimal = false;
@@ -195,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
         buttonEqual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                valueTwo = Double.parseDouble(editTextDisplay.getText() + "");
+                valueTwo = Double.parseDouble(String.valueOf(editTextDisplay.getText()));
                 // add = true;
 
                 if (add == true) {
@@ -254,6 +204,16 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void setDisplayValue(String s) {
+      //  data = Double.parseDouble(editTextDisplay.getText().toString());
+        data = getParseDouble(editTextDisplay.getText().toString());
+        if (data == 0) {
+            editTextDisplay.setText(s);
+        } else {
+            editTextDisplay.setText(editTextDisplay.getText() + s);
+        }
+    }
+
     private void initControls() {
         button1 = (Button) findViewById(R.id.button1);
         button2 = (Button) findViewById(R.id.button2);
@@ -275,6 +235,13 @@ public class MainActivity extends AppCompatActivity {
         buttonPercent = (Button) findViewById(R.id.buttonPercent);
         buttonDelete = (Button) findViewById(R.id.buttonDel);
         editTextDisplay = (EditText) findViewById(R.id.displayTV);
+    }
+
+    private double getParseDouble(String s){
+        if(s == null || s.isEmpty())
+            return 0.0;
+        else
+            return Double.parseDouble(s);
     }
 
 }
