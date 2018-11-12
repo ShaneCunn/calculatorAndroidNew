@@ -19,7 +19,7 @@
     <string name="plus">+</string>
     <string name="multiple">x</string>
     <string name="equal">=</string>
-    <string name="plusMinus">+/-</string>
+    <string name="plusMinus">-/+</string>
     <string name="defaultTextvalue">0</string>
     <string name="option">Rot</string>
 </resources>

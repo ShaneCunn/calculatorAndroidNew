@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     boolean hasDecimal, add, minus, divide, multi;
 
-    float valueOne, valueTwo, result;
+    double valueOne, valueTwo, result, data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String test = editTextDisplay.getText().toString();
-                if (test.contentEquals("0")) {
+                data = Double.parseDouble(editTextDisplay.getText().toString());
+                if (data == 0) {
                     editTextDisplay.setText("1");
                 } else {
                     editTextDisplay.setText(editTextDisplay.getText() + "1");
@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String test = editTextDisplay.getText().toString();
-                if (test.contentEquals("0")) {
+                data = Double.parseDouble(editTextDisplay.getText().toString());
+                if (data == 0) {
                     editTextDisplay.setText("2");
                 } else {
                     editTextDisplay.setText(editTextDisplay.getText() + "2");
@@ -48,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String test = editTextDisplay.getText().toString();
-                if (test.contentEquals("0")) {
+                data = Double.parseDouble(editTextDisplay.getText().toString());
+                if (data == 0) {
                     editTextDisplay.setText("3");
                 } else {
                     editTextDisplay.setText(editTextDisplay.getText() + "3");
@@ -59,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String test = editTextDisplay.getText().toString();
-                if (test.contentEquals("0")) {
+                data = Double.parseDouble(editTextDisplay.getText().toString());
+                if (data == 0) {
                     editTextDisplay.setText("4");
                 } else {
                     editTextDisplay.setText(editTextDisplay.getText() + "4");
@@ -70,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String test = editTextDisplay.getText().toString();
-                if (test.contentEquals("0")) {
+                data = Double.parseDouble(editTextDisplay.getText().toString());
+                if (data == 0) {
                     editTextDisplay.setText("5");
                 } else {
                     editTextDisplay.setText(editTextDisplay.getText() + "5");
@@ -81,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
         button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String test = editTextDisplay.getText().toString();
-                if (test.contentEquals("0")) {
+                data = Double.parseDouble(editTextDisplay.getText().toString());
+                if (data == 0) {
                     editTextDisplay.setText("6");
                 } else {
                     editTextDisplay.setText(editTextDisplay.getText() + "6");
@@ -92,8 +92,8 @@ public class MainActivity extends AppCompatActivity {
         button7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String test = editTextDisplay.getText().toString();
-                if (test.contentEquals("0")) {
+                data = Double.parseDouble(editTextDisplay.getText().toString());
+                if (data == 0) {
                     editTextDisplay.setText("7");
                 } else {
                     editTextDisplay.setText(editTextDisplay.getText() + "7");
@@ -103,8 +103,8 @@ public class MainActivity extends AppCompatActivity {
         button8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String test = editTextDisplay.getText().toString();
-                if (test.contentEquals("0")) {
+                data = Double.parseDouble(editTextDisplay.getText().toString());
+                if (data == 0) {
                     editTextDisplay.setText("8");
                 } else {
                     editTextDisplay.setText(editTextDisplay.getText() + "8");
@@ -114,8 +114,8 @@ public class MainActivity extends AppCompatActivity {
         button9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String test = editTextDisplay.getText().toString();
-                if (test.contentEquals("0")) {
+                data = Double.parseDouble(editTextDisplay.getText().toString());
+                if (data == 0) {
                     editTextDisplay.setText("9");
                 } else {
                     editTextDisplay.setText(editTextDisplay.getText() + "9");
@@ -125,8 +125,8 @@ public class MainActivity extends AppCompatActivity {
         button0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String test = editTextDisplay.getText().toString();
-                if (test.contentEquals("0")) {
+                data = Double.parseDouble(editTextDisplay.getText().toString());
+                if (data == 0) {
                     editTextDisplay.setText("0");
                 } else {
                     editTextDisplay.setText(editTextDisplay.getText() + "0");
@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
         buttonPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                valueOne = Float.parseFloat(editTextDisplay.getText() + "");
+                valueOne = Double.parseDouble(editTextDisplay.getText() + "");
                 add = true;
                 editTextDisplay.setText(null);
                 hasDecimal = false;
@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
         buttonMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                valueOne = Float.parseFloat(editTextDisplay.getText() + "");
+                valueOne = Double.parseDouble(editTextDisplay.getText() + "");
                 minus = true;
                 editTextDisplay.setText(null);
                 hasDecimal = false;
@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
         buttonMulti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                valueOne = Float.parseFloat(editTextDisplay.getText() + "");
+                valueOne = Double.parseDouble(editTextDisplay.getText() + "");
                 multi = true;
                 editTextDisplay.setText(null);
                 hasDecimal = false;
@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
         buttonDivide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                valueOne = Float.parseFloat(editTextDisplay.getText() + "");
+                valueOne = Double.parseDouble(editTextDisplay.getText() + "");
                 divide = true;
                 editTextDisplay.setText(null);
                 hasDecimal = false;
@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
         buttonEqual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                valueTwo = Float.parseFloat(editTextDisplay.getText() + "");
+                valueTwo = Double.parseDouble(editTextDisplay.getText() + "");
                 // add = true;
 
                 if (add == true) {
@@ -229,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
         buttonPercent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                valueOne = Float.parseFloat(editTextDisplay.getText() + "");
+                valueOne = Double.parseDouble(editTextDisplay.getText() + "");
                 result = valueOne / 100;
                 editTextDisplay.setText(String.valueOf(result));
             }
