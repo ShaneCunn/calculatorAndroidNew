@@ -37,6 +37,6 @@
     <string name="sqx">sqx</string>
     <string name="x">x!</string>
     <string name="oneX">1/x</string>
-    <string name="pie">pie</string>
+    <string name="pie">\u03C0</string>
     <string name="e">e</string>
 </resources>
