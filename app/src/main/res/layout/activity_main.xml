@@ -71,6 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/divide"
+            android:textSize="18sp"
             tools:layout_editor_absoluteX="280dp"
             tools:layout_editor_absoluteY="265dp" />
     </LinearLayout>

@@ -92,7 +92,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/xy" />
+            android:text="@string/xToPowerOf" />
 
         <Button
             android:id="@+id/button26"
@@ -141,7 +141,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
 
-            android:text="sq" />
+            android:text="@string/sqx" />
 
         <Button
             android:id="@+id/buttonAC"
@@ -169,7 +169,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/divide" />
+            android:text="@string/divide"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
