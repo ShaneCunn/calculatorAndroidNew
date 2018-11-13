@@ -23,4 +23,5 @@
     <string name="defaultTextvalue">0</string>
     <string name="option">SCI</string>
     <string name="cal">cal</string>
+    <string name="test">test</string>
 </resources>
