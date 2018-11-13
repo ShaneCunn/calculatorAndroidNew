@@ -24,4 +24,19 @@
     <string name="option">SCI</string>
     <string name="cal">cal</string>
     <string name="test">test</string>
+    <string name="second">2nd</string>
+    <string name="deg">deg</string>
+    <string name="sin">sin</string>
+    <string name="cos">cos</string>
+    <string name="tan">tan</string>
+    <string name="xy">xy</string>
+    <string name="lg">lg</string>
+    <string name="ln">ln</string>
+    <string name="leftBracket">(</string>
+    <string name="rightBracket">)</string>
+    <string name="sqx">sqx</string>
+    <string name="x">x!</string>
+    <string name="oneX">1/x</string>
+    <string name="pie">pie</string>
+    <string name="e">e</string>
 </resources>

@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
                 setDisplayValue("1");
             }
         });
-
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
                 setDisplayValue("0");
             }
         });
+
 
         buttonDot.setOnClickListener(new View.OnClickListener() {
             @Override
