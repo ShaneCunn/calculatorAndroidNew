@@ -1,18 +1,36 @@
 package com.example.calculator;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.construction.calculator.ScienceActivity;
+
 public class MainActivity extends AppCompatActivity {
-    Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button0, buttonDot, buttonClear, buttonPlus, buttonMinus, buttonDivide, buttonMulti, buttonEqual, buttonPercent, buttonDelete;
+    Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button0, buttonDot, buttonClear, buttonPlus, buttonMinus, buttonDivide, buttonMulti, buttonEqual, buttonPercent, buttonDelete, buttonScience;
     EditText editTextDisplay;
 
     boolean hasDecimal, add, minus, divide, multi;
 
     double valueOne = 0.0, valueTwo = 0.0, result = 0.0, data = 0.0;
+
+
+    public void startScience() {
+
+        buttonScience = (Button) findViewById(R.id.buttonScience);
+        buttonScience.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent science = new Intent(MainActivity.this, ScienceActivity.class);
+                startActivity(science);
+            }
+        });
+
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         initControls();
+        startScience();
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -205,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setDisplayValue(String s) {
-      //  data = Double.parseDouble(editTextDisplay.getText().toString());
+        //  data = Double.parseDouble(editTextDisplay.getText().toString());
         data = getParseDouble(editTextDisplay.getText().toString());
         if (data == 0) {
             editTextDisplay.setText(s);
@@ -237,8 +256,8 @@ public class MainActivity extends AppCompatActivity {
         editTextDisplay = (EditText) findViewById(R.id.displayTV);
     }
 
-    private double getParseDouble(String s){
-        if(s == null || s.isEmpty())
+    private double getParseDouble(String s) {
+        if (s == null || s.isEmpty())
             return 0.0;
         else
             return Double.parseDouble(s);

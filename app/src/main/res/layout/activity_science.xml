@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:screenOrientation="portrait"
-    tools:context=".MainActivity">
+    tools:context="com.construction.calculator.ScienceActivity">
 
     <EditText
         android:id="@+id/displayTV"
@@ -184,7 +183,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="@string/option"
+        android:text="@string/cal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button1" />
 
@@ -217,6 +216,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonDot"
         app:layout_constraintTop_toTopOf="@+id/buttonDot" />
-
 
 </android.support.constraint.ConstraintLayout>

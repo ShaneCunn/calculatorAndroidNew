@@ -21,5 +21,6 @@
     <string name="equal">=</string>
     <string name="plusMinus">-/+</string>
     <string name="defaultTextvalue">0</string>
-    <string name="option">Rot</string>
+    <string name="option">SCI</string>
+    <string name="cal">cal</string>
 </resources>
