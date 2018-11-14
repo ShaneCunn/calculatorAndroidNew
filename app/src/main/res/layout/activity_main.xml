@@ -16,7 +16,7 @@
         android:layout_marginEnd="8dp"
         android:clickable="true"
         android:editable="false"
-        android:text="@string/defaultTextvalue"
+        android:text=""
         android:textAlignment="textEnd"
         android:textSize="24sp"
         android:textStyle="bold"

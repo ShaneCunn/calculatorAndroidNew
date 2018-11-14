@@ -3,6 +3,7 @@ package com.example.calculator;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,12 +12,12 @@ import com.construction.calculator.ScienceActivity;
 
 public class MainActivity extends AppCompatActivity {
     Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button0, buttonDot, buttonClear, buttonPlus, buttonMinus, buttonDivide, buttonMulti, buttonEqual, buttonPercent, buttonDelete, buttonScience;
-    EditText editTextDisplay;
+    EditText editTextDisplay, editTextExpression;
 
-    boolean hasDecimal, add, minus, divide, multi;
+    boolean hasDecimal;
 
     double valueOne = 0.0, valueTwo = 0.0, result = 0.0, data = 0.0;
-    String operator = null;
+    String operator = null, expression;
 
     public void startScience() {
 
@@ -126,6 +127,19 @@ public class MainActivity extends AppCompatActivity {
                 valueOne = Double.parseDouble(String.valueOf(editTextDisplay.getText()));
                 operator = "add";
                 editTextDisplay.setText(null);
+
+                expression = String.valueOf(editTextExpression.getText());
+            /*    if (expression == "0") {
+                    expression = "";
+                }*/
+                if (TextUtils.isEmpty(expression)) {
+                    editTextExpression.append(valueOne + " +");
+
+                } else {
+
+                    editTextExpression.append(" " + valueOne + " +");
+
+                }
                 hasDecimal = false;
             }
         });
@@ -136,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
                 valueOne = Double.parseDouble(String.valueOf(editTextDisplay.getText()));
                 operator = "minus";
                 editTextDisplay.setText(null);
+                editTextExpression.setText(valueOne + " -");
                 hasDecimal = false;
             }
         });
@@ -145,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
                 valueOne = Double.parseDouble(String.valueOf(editTextDisplay.getText()));
                 operator = "multi";
                 editTextDisplay.setText(null);
+                editTextExpression.setText(valueOne + " x");
                 hasDecimal = false;
             }
         });
@@ -154,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
                 valueOne = Double.parseDouble(String.valueOf(editTextDisplay.getText()));
                 operator = "divide";
                 editTextDisplay.setText(null);
+                editTextExpression.setText(valueOne + " \u00F7");
                 hasDecimal = false;
             }
         });
@@ -190,6 +207,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 editTextDisplay.setText("0");
+                editTextExpression.setText("");
                 hasDecimal = false;
             }
         });
@@ -210,7 +228,6 @@ public class MainActivity extends AppCompatActivity {
                 if (result.length() > 0) {
                     editTextDisplay.setText(result.substring(0, result.length() - 1));
                     if (result.isEmpty()) {
-
                         result = "0";
                         editTextDisplay.setText("0");
                     }
@@ -252,6 +269,7 @@ public class MainActivity extends AppCompatActivity {
         buttonPercent = (Button) findViewById(R.id.buttonPercent);
         buttonDelete = (Button) findViewById(R.id.buttonDel);
         editTextDisplay = (EditText) findViewById(R.id.displayTV);
+        editTextExpression = (EditText) findViewById(R.id.TVExpression);
     }
 
     private double getParseDouble(String s) {
@@ -261,4 +279,7 @@ public class MainActivity extends AppCompatActivity {
             return Double.parseDouble(s);
     }
 
+
+    /*public static void appendOnExpresstion(string:String, canClear:Boolean) {
+    }*/
 }
