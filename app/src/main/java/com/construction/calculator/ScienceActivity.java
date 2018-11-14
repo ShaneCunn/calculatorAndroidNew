@@ -12,20 +12,19 @@ import com.example.calculator.R;
 
 public class ScienceActivity extends AppCompatActivity {
 
-    Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button0, buttonDot, buttonClear, buttonPlus, buttonMinus, buttonDivide, buttonMulti, buttonEqual, buttonPercent, buttonDelete, buttonScience;
-    EditText editTextDisplay;
+    Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button0, buttonDot, buttonClear,
+            buttonPlus, buttonMinus, buttonDivide, buttonMulti, buttonEqual, buttonPercent, buttonDelete, buttonCal;
 
-    boolean hasDecimal, add, minus, divide, multi;
+    EditText editTextDisplay;
+    String operator = null;
+    boolean hasDecimal;
 
     double valueOne = 0.0, valueTwo = 0.0, result = 0.0, data = 0.0;
 
-    Button buttonCal;
-
-
     public void startCalculator() {
 
-        buttonScience = (Button) findViewById(R.id.buttonScience);
-        buttonScience.setOnClickListener(new View.OnClickListener() {
+        buttonCal = (Button) findViewById(R.id.buttonCalculator);
+        buttonCal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent calMain = new Intent(ScienceActivity.this, MainActivity.class);
@@ -132,7 +131,7 @@ public class ScienceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 valueOne = Double.parseDouble(String.valueOf(editTextDisplay.getText()));
-                add = true;
+                operator = "add";
                 editTextDisplay.setText(null);
                 hasDecimal = false;
             }
@@ -141,7 +140,7 @@ public class ScienceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 valueOne = Double.parseDouble(String.valueOf(editTextDisplay.getText()));
-                minus = true;
+                operator = "minus";
                 editTextDisplay.setText(null);
                 hasDecimal = false;
             }
@@ -150,7 +149,7 @@ public class ScienceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 valueOne = Double.parseDouble(String.valueOf(editTextDisplay.getText()));
-                multi = true;
+                operator = "multi";
                 editTextDisplay.setText(null);
                 hasDecimal = false;
             }
@@ -159,7 +158,7 @@ public class ScienceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 valueOne = Double.parseDouble(String.valueOf(editTextDisplay.getText()));
-                divide = true;
+                operator = "divide";
                 editTextDisplay.setText(null);
                 hasDecimal = false;
             }
@@ -171,31 +170,24 @@ public class ScienceActivity extends AppCompatActivity {
             public void onClick(View v) {
                 valueTwo = Double.parseDouble(String.valueOf(editTextDisplay.getText()));
                 // add = true;
+                switch (operator) {
+                    case "add":
+                        result = valueOne + valueTwo;
+                        break;
+                    case "minus":
+                        result = valueOne - valueTwo;
+                        break;
+                    case "multi":
+                        result = valueOne * valueTwo;
+                        break;
+                    case "divide":
+                        result = valueOne / valueTwo;
+                        break;
+                }
+                editTextDisplay.setText(String.valueOf(result));
+                hasDecimal = false;
+                operator = "";
 
-                if (add == true) {
-                    result = valueOne + valueTwo;
-                    editTextDisplay.setText(String.valueOf(result));
-                    add = false;
-                    hasDecimal = false;
-                }
-                if (minus == true) {
-                    result = valueOne - valueTwo;
-                    editTextDisplay.setText(String.valueOf(result));
-                    minus = false;
-                    hasDecimal = false;
-                }
-                if (multi == true) {
-                    result = valueOne * valueTwo;
-                    editTextDisplay.setText(String.valueOf(result));
-                    multi = false;
-                    hasDecimal = false;
-                }
-                if (divide == true) {
-                    result = valueOne + valueTwo;
-                    editTextDisplay.setText(String.valueOf(result));
-                    divide = false;
-                    hasDecimal = false;
-                }
 
             }
         });

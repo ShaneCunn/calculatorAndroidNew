@@ -332,7 +332,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
-            android:id="@+id/buttonScience"
+            android:id="@+id/buttonCalculator"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

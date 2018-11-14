@@ -8,23 +8,41 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/displayTV"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:id="@+id/TVExpression"
+        android:layout_width="395dp"
+        android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:clickable="true"
         android:editable="false"
         android:text="@string/defaultTextvalue"
         android:textAlignment="textEnd"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:maxLines="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <EditText
+        android:id="@+id/displayTV"
+        android:layout_width="395dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:clickable="true"
+        android:editable="false"
+        android:text="@string/defaultTextvalue"
+        android:textAlignment="textEnd"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:maxLines="1"
         app:layout_constraintBottom_toTopOf="@+id/Top"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/TVExpression" />
 
     <LinearLayout
         android:id="@+id/Top"
