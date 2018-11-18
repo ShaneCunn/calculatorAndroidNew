@@ -4,11 +4,15 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.construction.calculator.ScienceActivity;
+
+import net.objecthunter.exp4j.Expression;
+import net.objecthunter.exp4j.ExpressionBuilder;
 
 public class MainActivity extends AppCompatActivity {
     Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button0, buttonDot, buttonClear, buttonPlus, buttonMinus, buttonDivide, buttonMulti, buttonEqual, buttonPercent, buttonDelete, buttonScience;
@@ -46,61 +50,69 @@ public class MainActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setDisplayValue("1");
+                setDisplayValue("1", true);
             }
         });
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setDisplayValue("2");
+                setDisplayValue("2", true);
             }
         });
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setDisplayValue("3");
+                setDisplayValue("3", true);
             }
         });
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setDisplayValue("4");
+                setDisplayValue("4", true);
             }
         });
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setDisplayValue("5");
+                setDisplayValue("5", true);
             }
         });
         button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setDisplayValue("6");
+                setDisplayValue("6", true);
             }
         });
         button7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setDisplayValue("7");
+                setDisplayValue("7", true);
             }
         });
         button8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setDisplayValue("8");
+                setDisplayValue("8", true);
             }
         });
         button9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setDisplayValue("9");
+                setDisplayValue("9", true);
             }
         });
         button0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setDisplayValue("0");
+                setDisplayValue("0", true);
+            }
+        });
+
+
+        buttonPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setDisplayValue("+", false);
             }
         });
 
@@ -132,12 +144,16 @@ public class MainActivity extends AppCompatActivity {
             /*    if (expression == "0") {
                     expression = "";
                 }*/
-                if (TextUtils.isEmpty(expression)) {
-                    editTextExpression.append(valueOne + " +");
+                if (!TextUtils.isEmpty(expression)) {
 
+
+                    editTextExpression.append(valueOne + " + ");
+
+                } else if (expression.equals("+")) {
+                    editTextDisplay.setText(" test2 ");
                 } else {
 
-                    editTextExpression.append(" " + valueOne + " +");
+                    editTextExpression.append(" " + valueOne + " + ");
 
                 }
                 hasDecimal = false;
@@ -179,11 +195,27 @@ public class MainActivity extends AppCompatActivity {
         buttonEqual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+              /*  Expression expressionTest = new ExpressionBuilder(editTextExpression.getText().toString()).build();
+                double testResult = expressionTest.evaluate();
+                double answerResult = testResult;*/
+                String test = String.valueOf(editTextExpression);
                 valueTwo = Double.parseDouble(String.valueOf(editTextDisplay.getText()));
                 // add = true;
                 switch (operator) {
                     case "add":
-                        result = valueOne + valueTwo;
+                        try {
+                            Expression expressionTest = new ExpressionBuilder(editTextExpression.getText().toString() + " + " + valueTwo).build();
+                            double testResult = expressionTest.evaluate();
+                            double answerResult = testResult;
+                            result = answerResult;
+                            // result = valueOne + valueTwo;
+                            editTextExpression.append(String.valueOf(valueTwo));
+                        } catch (Exception e) {
+                            Log.d("Exception", " message : " + e.getMessage());
+                        }
+
+
                         break;
                     case "minus":
                         result = valueOne - valueTwo;
@@ -238,14 +270,28 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void setDisplayValue(String s) {
+    private void setDisplayValue(String s, boolean canClear) {
         //  data = Double.parseDouble(editTextDisplay.getText().toString());
-        data = getParseDouble(editTextDisplay.getText().toString());
-        if (data == 0) {
+      //  data = getParseDouble(editTextDisplay.getText().toString());
+        if (!editTextDisplay.toString().isEmpty()) {
+            editTextExpression.setText("");
+        }
+
+        if (canClear == false) {
+
+            editTextDisplay.setText("");
+            editTextExpression.append(s);
+        } else {
+            editTextExpression.append(editTextDisplay.getText());
+            editTextExpression.append(s);
+            editTextDisplay.setText("");
+
+        }
+      /*  if (data == 0) {
             editTextDisplay.setText(s);
         } else {
             editTextDisplay.setText(editTextDisplay.getText() + s);
-        }
+        }*/
     }
 
     private void initControls() {
