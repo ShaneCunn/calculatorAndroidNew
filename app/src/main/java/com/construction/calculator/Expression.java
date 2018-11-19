@@ -113,38 +113,56 @@ public class Expression extends AppCompatActivity {
             }
         });
 
+        buttonDot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String value = String.valueOf(tvEpression.getText());
+                char c = value.charAt(0);
+                if (c == '.') {
+                    setDisplayValue("0.", true);
+                } else {
+                    setDisplayValue(".", true);
+                }
+
+            }
+        });
+
 
         buttonPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setDisplayValue("+", false);
+                setDisplayValue(" + ", false);
             }
         });
         buttonMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                valueOne = Double.parseDouble(String.valueOf(tvResult.getText()));
+                setDisplayValue(" - ", false);
+             /*   valueOne = Double.parseDouble(String.valueOf(tvResult.getText()));
                 operator = "minus";
                 tvResult.setText(null);
-                hasDecimal = false;
+                hasDecimal = false;*/
             }
         });
         buttonMulti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                valueOne = Double.parseDouble(String.valueOf(tvResult.getText()));
+                setDisplayValue(" * ", false);
+              /*  valueOne = Double.parseDouble(String.valueOf(tvResult.getText()));
                 operator = "multi";
                 tvResult.setText(null);
-                hasDecimal = false;
+                hasDecimal = false;*/
             }
         });
         buttonDivide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                valueOne = Double.parseDouble(String.valueOf(tvResult.getText()));
+                setDisplayValue(" / ", false);
+             /*   valueOne = Double.parseDouble(String.valueOf(tvResult.getText()));
                 operator = "divide";
                 tvResult.setText(null);
-                hasDecimal = false;
+                hasDecimal = false;*/
             }
         });
 
@@ -191,6 +209,8 @@ public class Expression extends AppCompatActivity {
                 try {
                     net.objecthunter.exp4j.Expression exppresionValue = new ExpressionBuilder(tvEpression.getText().toString()).build();
                     Double answer = exppresionValue.evaluate();
+
+                    //   Long fullResult = answer
                     tvResult.setText(String.valueOf(answer));
                 } catch (Exception e) {
                     Log.d("Excerption", " message is: " + e.getMessage());
@@ -206,9 +226,10 @@ public class Expression extends AppCompatActivity {
             tvEpression.setText("");
         }
 
-        if (canClear) {
+        if (canClear == false) {
             tvResult.setText("");
             tvEpression.setText(testanswer + resultText);
+
 
         } else {
             tvEpression.append(tvResult.getText());
