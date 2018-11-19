@@ -15,7 +15,8 @@ import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 
 public class MainActivity extends AppCompatActivity {
-    Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button0, buttonDot, buttonClear, buttonPlus, buttonMinus, buttonDivide, buttonMulti, buttonEqual, buttonPercent, buttonDelete, buttonScience;
+    Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button0, buttonDot, buttonClear,
+            buttonPlus, buttonMinus, buttonDivide, buttonMulti, buttonEqual, buttonPercent, buttonDelete, buttonScience, buttonExpression;
     EditText editTextDisplay, editTextExpression;
 
     boolean hasDecimal;
@@ -23,7 +24,20 @@ public class MainActivity extends AppCompatActivity {
     double valueOne = 0.0, valueTwo = 0.0, result = 0.0, data = 0.0;
     String operator = null, expression;
 
-    public void startScience() {
+    public void startExpression() {
+
+        buttonExpression = (Button) findViewById(R.id.buttonScience);
+        buttonExpression.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent expressiontest = new Intent(MainActivity.this, com.construction.calculator.Expression.class);
+                startActivity(expressiontest);
+            }
+        });
+
+    }
+
+ /*   public void startScience() {
 
         buttonScience = (Button) findViewById(R.id.buttonScience);
         buttonScience.setOnClickListener(new View.OnClickListener() {
@@ -34,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
+    }*/
 
 
     @Override
@@ -44,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         initControls();
-        startScience();
+        // startScience();
+        startExpression();
 
         //Numbers
         button1.setOnClickListener(new View.OnClickListener() {
@@ -101,6 +116,8 @@ public class MainActivity extends AppCompatActivity {
                 setDisplayValue("9", true);
             }
         });
+
+
         button0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -272,7 +289,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setDisplayValue(String s, boolean canClear) {
         //  data = Double.parseDouble(editTextDisplay.getText().toString());
-      //  data = getParseDouble(editTextDisplay.getText().toString());
+        //  data = getParseDouble(editTextDisplay.getText().toString());
         if (!editTextDisplay.toString().isEmpty()) {
             editTextExpression.setText("");
         }
