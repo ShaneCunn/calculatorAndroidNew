@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -45,9 +46,17 @@ public class Expression extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expression);
 
+
         //   startCalculator();
         initControls();
         // startScience();
+
+        // disable keyboard on edittext boxes
+        tvEpression.requestFocus();
+        tvEpression.setShowSoftInputOnFocus(false);
+        tvResult.requestFocus();
+        tvResult.setShowSoftInputOnFocus(false);
+
 
         //Numbers
         button1.setOnClickListener(new View.OnClickListener() {

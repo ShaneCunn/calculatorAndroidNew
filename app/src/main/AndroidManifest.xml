@@ -9,10 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.construction.calculator.Expression"
+        <activity
+            android:name="com.construction.calculator.Expression"
             android:label="Test Calculator"></activity>
-        <activity android:name="com.construction.calculator.ScienceActivity"
-            android:label="Science Calculator"/>
+        <activity
+            android:name="com.construction.calculator.ScienceActivity"
+            android:label="Science Calculator" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
