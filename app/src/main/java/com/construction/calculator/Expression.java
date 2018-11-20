@@ -11,7 +11,6 @@ import android.widget.EditText;
 
 import com.example.calculator.R;
 
-import net.objecthunter.exp4j.ExpressionBuilder;
 
 public class Expression extends AppCompatActivity {
 
@@ -23,7 +22,7 @@ public class Expression extends AppCompatActivity {
 
     boolean hasDecimal = false;
 
-    double valueOne = 0.0, valueTwo = 0.0, result = 0.0, data = 0.0;
+    double valueOne = 0.0;
 
 
     @Override
@@ -32,9 +31,8 @@ public class Expression extends AppCompatActivity {
         setContentView(R.layout.activity_expression);
 
 
-        //   startCalculator();
         initControls();
-        // startScience();
+
 
         // disable keyboard on edit text boxes
         tvEpression.requestFocus();
@@ -177,7 +175,6 @@ public class Expression extends AppCompatActivity {
                     tvEpression.setText(result.substring(0, result.length() - 1));
                     if (result.isEmpty()) {
 
-                        result = "0";
                         tvEpression.setText("0");
                     }
 
@@ -199,25 +196,23 @@ public class Expression extends AppCompatActivity {
         buttonEqual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 try {
-                    net.objecthunter.exp4j.Expression expressionValue = new ExpressionBuilder(tvEpression.getText().toString()).build();
-                  Object result = expressionValue.evaluate();
-
-               /*     Long longResult = (Double) result.doubleToLongBits();
-                    if (result == longResult) {
-
-                    }*/
+                    com.udojava.evalex.Expression expression =
+                            new com.udojava.evalex.Expression(tvEpression.getText().toString());
+                    String result = expression.eval().toString();
                     tvResult.setText(String.valueOf(result));
                 } catch (Exception e) {
                     Log.d("Exception", " message is: " + e.getMessage());
                 }
+
             }
         });
 
     }
 
     private void setDisplayValue(String resultText, boolean canClear) {
-        String testanswer = String.valueOf(tvEpression.getText());
+        String expressionResult = String.valueOf(tvEpression.getText());
 
         if (!tvResult.toString().isEmpty()) {
             tvEpression.setText("");
@@ -225,14 +220,12 @@ public class Expression extends AppCompatActivity {
 
         if (canClear == false) {
             tvResult.setText("");
-            tvEpression.setText(testanswer + resultText);
-
+            tvEpression.setText(expressionResult + resultText);
 
         } else {
             tvEpression.setText(tvResult.getText());
-            tvEpression.setText(testanswer + resultText);
+            tvEpression.setText(expressionResult + resultText);
             tvResult.setText("");
-
         }
 
 
@@ -262,10 +255,5 @@ public class Expression extends AppCompatActivity {
         tvEpression = (EditText) findViewById(R.id.TVExpression);
     }
 
-    private double getParseDouble(String s) {
-        if (s == null || s.isEmpty())
-            return 0.0;
-        else
-            return Double.parseDouble(s);
-    }
+
 }
