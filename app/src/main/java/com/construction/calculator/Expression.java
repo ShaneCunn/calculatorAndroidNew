@@ -1,15 +1,14 @@
 package com.construction.calculator;
 
-import android.content.Intent;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.calculator.MainActivity;
+
 import com.example.calculator.R;
 
 import net.objecthunter.exp4j.ExpressionBuilder;
@@ -21,25 +20,11 @@ public class Expression extends AppCompatActivity {
             buttonPlus, buttonMinus, buttonDivide, buttonMulti, buttonEqual, buttonPercent, buttonDelete, buttonCal;
 
     EditText tvResult, tvEpression;
-    String operator = null;
-    boolean hasDecimal;
+
+    boolean hasDecimal = false;
 
     double valueOne = 0.0, valueTwo = 0.0, result = 0.0, data = 0.0;
 
-/*
-    public void startCalculator() {
-
-        buttonCal = findViewById(R.id.buttonCalculator);
-        buttonCal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent calMain = new Intent(Expression.this, MainActivity.class);
-                startActivity(calMain);
-            }
-        });
-
-    }
-*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +36,7 @@ public class Expression extends AppCompatActivity {
         initControls();
         // startScience();
 
-        // disable keyboard on edittext boxes
+        // disable keyboard on edit text boxes
         tvEpression.requestFocus();
         tvEpression.setShowSoftInputOnFocus(false);
         tvResult.requestFocus();
@@ -113,8 +98,6 @@ public class Expression extends AppCompatActivity {
                 setDisplayValue("9", true);
             }
         });
-
-
         button0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,50 +111,50 @@ public class Expression extends AppCompatActivity {
 
                 String value = String.valueOf(tvEpression.getText());
                 char c = value.charAt(0);
-                if (c == '.') {
-                    setDisplayValue("0.", true);
-                } else {
-                    setDisplayValue(".", true);
+
+                // check to see if there is one period/decimal place
+                if (hasDecimal == false) {
+                    if (c == '.') {
+                        setDisplayValue("0.", true);
+                        hasDecimal = true;
+                    } else {
+                        setDisplayValue(".", true);
+                        hasDecimal = true;
+
+                    }
                 }
+
 
             }
         });
 
-
+        // Operators
         buttonPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setDisplayValue(" + ", false);
+                hasDecimal = false;
             }
         });
         buttonMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setDisplayValue(" - ", false);
-             /*   valueOne = Double.parseDouble(String.valueOf(tvResult.getText()));
-                operator = "minus";
-                tvResult.setText(null);
-                hasDecimal = false;*/
+                hasDecimal = false;
             }
         });
         buttonMulti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setDisplayValue(" * ", false);
-              /*  valueOne = Double.parseDouble(String.valueOf(tvResult.getText()));
-                operator = "multi";
-                tvResult.setText(null);
-                hasDecimal = false;*/
+                hasDecimal = false;
             }
         });
         buttonDivide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setDisplayValue(" / ", false);
-             /*   valueOne = Double.parseDouble(String.valueOf(tvResult.getText()));
-                operator = "divide";
-                tvResult.setText(null);
-                hasDecimal = false;*/
+                hasDecimal = false;
             }
         });
 
@@ -189,13 +172,13 @@ public class Expression extends AppCompatActivity {
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String result = tvResult.getText().toString();
+                String result = tvEpression.getText().toString();
                 if (result.length() > 0) {
-                    tvResult.setText(result.substring(0, result.length() - 1));
+                    tvEpression.setText(result.substring(0, result.length() - 1));
                     if (result.isEmpty()) {
 
                         result = "0";
-                        tvResult.setText("0");
+                        tvEpression.setText("0");
                     }
 
                 }
@@ -209,6 +192,7 @@ public class Expression extends AppCompatActivity {
             public void onClick(View v) {
                 tvResult.setText("");
                 tvEpression.setText("");
+                hasDecimal = false;
             }
         });
 
@@ -216,13 +200,16 @@ public class Expression extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    net.objecthunter.exp4j.Expression exppresionValue = new ExpressionBuilder(tvEpression.getText().toString()).build();
-                    Double answer = exppresionValue.evaluate();
+                    net.objecthunter.exp4j.Expression expressionValue = new ExpressionBuilder(tvEpression.getText().toString()).build();
+                  Object result = expressionValue.evaluate();
 
-                    //   Long fullResult = answer
-                    tvResult.setText(String.valueOf(answer));
+               /*     Long longResult = (Double) result.doubleToLongBits();
+                    if (result == longResult) {
+
+                    }*/
+                    tvResult.setText(String.valueOf(result));
                 } catch (Exception e) {
-                    Log.d("Excerption", " message is: " + e.getMessage());
+                    Log.d("Exception", " message is: " + e.getMessage());
                 }
             }
         });
@@ -231,6 +218,7 @@ public class Expression extends AppCompatActivity {
 
     private void setDisplayValue(String resultText, boolean canClear) {
         String testanswer = String.valueOf(tvEpression.getText());
+
         if (!tvResult.toString().isEmpty()) {
             tvEpression.setText("");
         }
@@ -241,10 +229,12 @@ public class Expression extends AppCompatActivity {
 
 
         } else {
-            tvEpression.append(tvResult.getText());
-            tvEpression.append(testanswer + resultText);
+            tvEpression.setText(tvResult.getText());
+            tvEpression.setText(testanswer + resultText);
             tvResult.setText("");
+
         }
+
 
     }
 
