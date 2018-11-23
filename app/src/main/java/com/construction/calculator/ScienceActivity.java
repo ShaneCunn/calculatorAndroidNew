@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.calculator.MainActivity;
-import com.example.calculator.R;
+import  com.example.calculator.R;
 
 public class ScienceActivity extends AppCompatActivity {
 
