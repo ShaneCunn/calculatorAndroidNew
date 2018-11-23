@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name="com.construction.calculator.ActivityBasicCal"></activity>
         <activity
             android:name="com.construction.calculator.Expression"
-            android:label="Test Calculator"></activity>
+            android:label="Test Calculator" />
         <activity
             android:name="com.construction.calculator.ScienceActivity"
             android:label="Science Calculator" />
