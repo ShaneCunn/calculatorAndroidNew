@@ -3,6 +3,8 @@ package com.construction.calculator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.calculator.R;
+
 public class ActivityBasicCal extends AppCompatActivity {
 
     @Override
