@@ -11,7 +11,7 @@
     <string name="eight">8</string>
     <string name="nine">9</string>
     <string name="dot">.</string>
-    <string name="delete">del</string>
+    <string name="delete">←</string>
     <string name="clear">ac</string>
     <string name="percent">%</string>
     <string name="divide">\u00F7</string>

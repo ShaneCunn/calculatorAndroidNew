@@ -74,7 +74,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:foregroundTint="@color/colorAccent"
             android:text="@string/delete"
+            android:textStyle="bold"
             tools:layout_editor_absoluteX="104dp"
             tools:layout_editor_absoluteY="265dp" />
 

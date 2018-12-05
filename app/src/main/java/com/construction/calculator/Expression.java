@@ -10,6 +10,8 @@ import android.widget.EditText;
 
 import com.example.calculator.R;
 
+import java.math.BigDecimal;
+
 
 public class Expression extends AppCompatActivity {
 
@@ -196,15 +198,7 @@ public class Expression extends AppCompatActivity {
         buttonEqual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                try {
-                    com.udojava.evalex.Expression expression =
-                            new com.udojava.evalex.Expression(tvEpression.getText().toString());
-                    String result = expression.eval().toString();
-                    tvResult.setText(String.valueOf(result));
-                } catch (Exception e) {
-                    Log.d("Exception", " message is: " + e.getMessage());
-                }
+                mathEvalution();
            /*     try {
                     net.objecthunter.exp4j.Expression expressionValue;
                     expressionValue = new ExpressionBuilder(tvEpression.getText().toString()).build();
@@ -219,22 +213,41 @@ public class Expression extends AppCompatActivity {
 
     }
 
+    private void mathEvalution() {
+        try {
+            com.udojava.evalex.Expression expression =
+                    new com.udojava.evalex.Expression(tvEpression.getText().toString());
+            // String result = expression.eval().toString();
+            BigDecimal result = expression.eval();
+            tvResult.setText(String.valueOf(result));
+        } catch (Exception e) {
+            Log.d("Exception", " message is: " + e.getMessage());
+        }
+    }
+
     private void setDisplayValue(String resultText, boolean canClear) {
         String testanswer = String.valueOf(tvEpression.getText());
 
         if (!tvResult.toString().isEmpty()) {
             tvEpression.setText("");
+
+
+            mathEvalution();
         }
 
         if (canClear == false) {
             tvResult.setText("");
             tvEpression.setText(testanswer + resultText);
 
+            mathEvalution();
+
 
         } else {
             tvEpression.setText(tvResult.getText());
             tvEpression.setText(testanswer + resultText);
             tvResult.setText("");
+
+            mathEvalution();
 
         }
 
