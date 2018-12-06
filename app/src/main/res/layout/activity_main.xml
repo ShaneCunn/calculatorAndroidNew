@@ -7,17 +7,20 @@
     android:screenOrientation="portrait"
     tools:context=".MainActivity">
 
+
     <EditText
         android:id="@+id/TVExpression"
         android:layout_width="395dp"
-        android:layout_height="80dp"
+        android:layout_height="180dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:clickable="false"
+        android:digits="0123456789."
         android:editable="false"
+        android:focusable="false"
+        android:inputType="numberSigned|numberDecimal"
         android:maxLines="1"
-        android:text=""
         android:textAlignment="textEnd"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -26,15 +29,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/displayTV"
+        android:id="@+id/tvDisplay"
         android:layout_width="395dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:clickable="false"
+        android:digits="0123456789."
         android:editable="false"
+        android:focusable="false"
+        android:inputType="numberSigned|numberDecimal"
         android:maxLines="1"
-        android:text="@string/defaultTextvalue"
         android:textAlignment="textEnd"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -88,6 +93,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/divide"
+            android:textColor="@color/colorOrange"
+            android:textColorLink="@color/colorOrange"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="280dp"
             tools:layout_editor_absoluteY="265dp" />
@@ -132,7 +139,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/multiple" />
+            android:text="@string/multiple"
+            android:textColor="@color/colorOrange"
+            android:textColorLink="@color/colorOrange" />
     </LinearLayout>
 
 
@@ -177,7 +186,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/minus" />
+            android:text="@string/minus"
+            android:textColor="@color/colorOrange"
+            android:textColorLink="@color/colorOrange"
+            android:textStyle="bold" />
     </LinearLayout>
 
 
@@ -219,7 +231,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/plus" />
+            android:text="@string/plus"
+            android:textColor="@color/colorOrange"
+            android:textColorLink="@color/colorOrange" />
     </LinearLayout>
 
 
