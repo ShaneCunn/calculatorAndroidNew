@@ -305,10 +305,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private double getParseDouble(String s) {
-        if (s == null || s.isEmpty())
-            return 0.0;
-        else
-            return Double.parseDouble(s);
-    }
+
 }
