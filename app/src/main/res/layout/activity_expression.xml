@@ -74,9 +74,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:foregroundTint="@color/colorAccent"
+            android:foregroundTint="@color/colorOrange"
             android:text="@string/delete"
-            android:textStyle="bold"
             tools:layout_editor_absoluteX="104dp"
             tools:layout_editor_absoluteY="265dp" />
 
@@ -95,7 +94,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/divide"
-            android:textSize="18sp"
+            android:textColor="@color/colorOrange"
+            android:textColorLink="@color/colorOrange"
+            android:textSize="14sp"
             tools:layout_editor_absoluteX="280dp"
             tools:layout_editor_absoluteY="265dp" />
     </LinearLayout>
@@ -139,7 +140,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/multiple" />
+            android:text="@string/multiple"
+            android:textColor="@color/colorOrange" />
     </LinearLayout>
 
 
@@ -184,7 +186,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/minus" />
+            android:text="@string/minus"
+            android:textColor="@color/colorOrange"
+            android:textStyle="bold" />
     </LinearLayout>
 
 
@@ -226,7 +230,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/plus" />
+            android:text="@string/plus"
+            android:textColor="@color/colorOrange" />
     </LinearLayout>
 
 
