@@ -164,7 +164,9 @@ public class Expression extends AppCompatActivity {
             public void onClick(View v) {
                 valueOne = Double.parseDouble(tvEpression.getText() + "");
                 result = valueOne / 100;
-                tvEpression.setText(valueOne + String.valueOf(result));
+
+                tvResult.setText(String.valueOf(result));
+                tvEpression.setText(String.valueOf(result));
             }
         });
 
