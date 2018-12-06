@@ -14,32 +14,37 @@ import com.construction.calculator.ScienceActivity;
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 
+import java.math.BigDecimal;
+
 public class MainActivity extends AppCompatActivity {
     Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button0, buttonDot, buttonClear,
-            buttonPlus, buttonMinus, buttonDivide, buttonMulti, buttonEqual, buttonPercent, buttonDelete, buttonScience, buttonExpression;
-    EditText editTextDisplay, editTextExpression;
+            buttonPlus, buttonMinus, buttonDivide, buttonMulti, buttonEqual, buttonPercent, buttonDelete, buttonScience;
+
 
     boolean hasDecimal;
 
     double valueOne = 0.0, valueTwo = 0.0, result = 0.0, data = 0.0;
     String operator = null, expression;
 
-    public void startExpression() {
+    EditText tvResult, tvEpression;
 
-        buttonExpression = (Button) findViewById(R.id.buttonScience);
-        buttonExpression.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent expressiontest = new Intent(MainActivity.this, com.construction.calculator.Expression.class);
-                startActivity(expressiontest);
-            }
-        });
 
-    }
+    /* public void startExpression() {
 
- /*   public void startScience() {
+         buttonExpression = (Button) findViewById(R.id.buttonScience);
+         buttonExpression.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 Intent expressiontest = new Intent(MainActivity.this, com.construction.calculator.Expression.class);
+                 startActivity(expressiontest);
+             }
+         });
 
-        buttonScience = (Button) findViewById(R.id.buttonScience);
+     }
+ */
+    public void startScience() {
+
+        buttonScience = findViewById(R.id.buttonScience);
         buttonScience.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }*/
+    }
 
 
     @Override
@@ -58,8 +63,16 @@ public class MainActivity extends AppCompatActivity {
 
 
         initControls();
+        //   startCalculator();
+        initControls();
         // startScience();
-        startExpression();
+
+        // disable keyboard on edit text boxes
+        tvEpression.requestFocus();
+        tvEpression.setShowSoftInputOnFocus(false);
+        tvResult.requestFocus();
+        tvResult.setShowSoftInputOnFocus(false);
+
 
         //Numbers
         button1.setOnClickListener(new View.OnClickListener() {
@@ -116,8 +129,6 @@ public class MainActivity extends AppCompatActivity {
                 setDisplayValue("9", true);
             }
         });
-
-
         button0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,147 +136,66 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        buttonPlus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setDisplayValue("+", false);
-            }
-        });
-
-
         buttonDot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                data = Double.parseDouble(editTextDisplay.getText().toString());
+
+                String value = String.valueOf(tvEpression.getText());
+                char c = value.charAt(0);
+
+                // check to see if there is one period/decimal place
                 if (hasDecimal == false) {
-                    // editTextDisplay.setText("0");
-                    editTextDisplay.setText(editTextDisplay.getText() + ".");
-                    hasDecimal = true;
+                    if (c == '.') {
+                        setDisplayValue("0.", true);
+                        hasDecimal = true;
+                    } else {
+                        setDisplayValue(".", true);
+                        hasDecimal = true;
+
+                    }
                 }
 
 
             }
         });
 
-
-        //Operators
+        // Operators
         buttonPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                valueOne = Double.parseDouble(String.valueOf(editTextDisplay.getText()));
-                operator = "add";
-                editTextDisplay.setText(null);
-
-                expression = String.valueOf(editTextExpression.getText());
-            /*    if (expression == "0") {
-                    expression = "";
-                }*/
-                if (!TextUtils.isEmpty(expression)) {
-
-
-                    editTextExpression.append(valueOne + " + ");
-
-                } else if (expression.equals("+")) {
-                    editTextDisplay.setText(" test2 ");
-                } else {
-
-                    editTextExpression.append(" " + valueOne + " + ");
-
-                }
+                setDisplayValue(" + ", false);
                 hasDecimal = false;
             }
         });
-
         buttonMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                valueOne = Double.parseDouble(String.valueOf(editTextDisplay.getText()));
-                operator = "minus";
-                editTextDisplay.setText(null);
-                editTextExpression.setText(valueOne + " -");
+                setDisplayValue(" - ", false);
                 hasDecimal = false;
             }
         });
         buttonMulti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                valueOne = Double.parseDouble(String.valueOf(editTextDisplay.getText()));
-                operator = "multi";
-                editTextDisplay.setText(null);
-                editTextExpression.setText(valueOne + " x");
+                setDisplayValue(" * ", false);
                 hasDecimal = false;
             }
         });
         buttonDivide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                valueOne = Double.parseDouble(String.valueOf(editTextDisplay.getText()));
-                operator = "divide";
-                editTextDisplay.setText(null);
-                editTextExpression.setText(valueOne + " \u00F7");
+                setDisplayValue(" / ", false);
                 hasDecimal = false;
             }
         });
 
-        // controls
-        buttonEqual.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-              /*  Expression expressionTest = new ExpressionBuilder(editTextExpression.getText().toString()).build();
-                double testResult = expressionTest.evaluate();
-                double answerResult = testResult;*/
-                String test = String.valueOf(editTextExpression);
-                valueTwo = Double.parseDouble(String.valueOf(editTextDisplay.getText()));
-                // add = true;
-                switch (operator) {
-                    case "add":
-                        try {
-                            Expression expressionTest = new ExpressionBuilder(editTextExpression.getText().toString() + " + " + valueTwo).build();
-                            double testResult = expressionTest.evaluate();
-                            double answerResult = testResult;
-                            result = answerResult;
-                            // result = valueOne + valueTwo;
-                            editTextExpression.append(String.valueOf(valueTwo));
-                        } catch (Exception e) {
-                            Log.d("Exception", " message : " + e.getMessage());
-                        }
-
-
-                        break;
-                    case "minus":
-                        result = valueOne - valueTwo;
-                        break;
-                    case "multi":
-                        result = valueOne * valueTwo;
-                        break;
-                    case "divide":
-                        result = valueOne / valueTwo;
-                        break;
-                }
-                editTextDisplay.setText(String.valueOf(result));
-                hasDecimal = false;
-                operator = "";
-
-
-            }
-        });
-
-        buttonClear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editTextDisplay.setText("0");
-                editTextExpression.setText("");
-                hasDecimal = false;
-            }
-        });
         buttonPercent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                valueOne = Double.parseDouble(editTextDisplay.getText() + "");
+                valueOne = Double.parseDouble(tvEpression.getText() + "");
                 result = valueOne / 100;
-                editTextDisplay.setText(String.valueOf(result));
+                tvEpression.setText(valueOne + String.valueOf(result));
             }
         });
 
@@ -273,42 +203,70 @@ public class MainActivity extends AppCompatActivity {
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String result = editTextDisplay.getText().toString();
+                String result = tvEpression.getText().toString();
                 if (result.length() > 0) {
-                    editTextDisplay.setText(result.substring(0, result.length() - 1));
+                    tvEpression.setText(result.substring(0, result.length() - 1));
                     if (result.isEmpty()) {
-                        result = "0";
-                        editTextDisplay.setText("0");
+
+                        tvEpression.setText("0");
                     }
 
                 }
 
             }
         });
+
+
+        buttonClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvResult.setText("");
+                tvEpression.setText("");
+                hasDecimal = false;
+            }
+        });
+
+        buttonEqual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mathEvalution();
+           /*     try {
+                    net.objecthunter.exp4j.Expression expressionValue;
+                    expressionValue = new ExpressionBuilder(tvEpression.getText().toString()).build();
+                    Object result = expressionValue.evaluate();
+
+                    tvResult.setText(String.valueOf(result));
+                } catch (Exception e) {
+                    Log.d("Exception", " message is: " + e.getMessage());
+                }*/
+            }
+        });
+
     }
 
-    private void setDisplayValue(String s, boolean canClear) {
-        //  data = Double.parseDouble(editTextDisplay.getText().toString());
-        //  data = getParseDouble(editTextDisplay.getText().toString());
-        if (!editTextDisplay.toString().isEmpty()) {
-            editTextExpression.setText("");
+    private void setDisplayValue(String resultText, boolean canClear) {
+        String testanswer = String.valueOf(tvEpression.getText());
+
+        if (!tvResult.toString().isEmpty()) {
+            tvEpression.setText("");
+            mathEvalution();
         }
 
         if (canClear == false) {
+            tvResult.setText("");
+            tvEpression.setText(testanswer + resultText);
 
-            editTextDisplay.setText("");
-            editTextExpression.append(s);
+            mathEvalution();
         } else {
-            editTextExpression.append(editTextDisplay.getText());
-            editTextExpression.append(s);
-            editTextDisplay.setText("");
+            tvEpression.setText(tvResult.getText());
+            tvEpression.setText(testanswer + resultText);
+            tvResult.setText("");
 
+            mathEvalution();
         }
-      /*  if (data == 0) {
-            editTextDisplay.setText(s);
-        } else {
-            editTextDisplay.setText(editTextDisplay.getText() + s);
-        }*/
+
+
     }
 
     private void initControls() {
@@ -331,8 +289,20 @@ public class MainActivity extends AppCompatActivity {
         buttonEqual = (Button) findViewById(R.id.buttonEqual);
         buttonPercent = (Button) findViewById(R.id.buttonPercent);
         buttonDelete = (Button) findViewById(R.id.buttonDel);
-        editTextDisplay = (EditText) findViewById(R.id.displayTV);
-        editTextExpression = (EditText) findViewById(R.id.TVExpression);
+        tvResult = (EditText) findViewById(R.id.tvDisplay);
+        tvEpression = (EditText) findViewById(R.id.TVExpression);
+    }
+
+    private void mathEvalution() {
+        try {
+            com.udojava.evalex.Expression expression =
+                    new com.udojava.evalex.Expression(tvEpression.getText().toString());
+            // String result = expression.eval().toString();
+            BigDecimal result = expression.eval();
+            tvResult.setText(String.valueOf(result));
+        } catch (Exception e) {
+            Log.d("Exception", " message is: " + e.getMessage());
+        }
     }
 
     private double getParseDouble(String s) {
@@ -341,8 +311,4 @@ public class MainActivity extends AppCompatActivity {
         else
             return Double.parseDouble(s);
     }
-
-
-    /*public static void appendOnExpresstion(string:String, canClear:Boolean) {
-    }*/
 }
