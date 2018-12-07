@@ -17,16 +17,14 @@ public class ScienceActivity extends AppCompatActivity {
 
     Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button0, buttonDot, buttonClear,
             buttonPlus, buttonMinus, buttonDivide, buttonMulti, buttonEqual, buttonPercent, buttonDelete, buttonCal;
-    EditText tvResult, tvExpression;
-    EditText editTextDisplay;
-    String operator = null;
-    boolean hasDecimal;
 
-    double valueOne = 0.0, valueTwo = 0.0, result = 0.0, data = 0.0;
+    EditText tvResult, tvExpression;
+
+    boolean hasDecimal;
 
     public void startCalculator() {
 
-        buttonCal = (Button) findViewById(R.id.buttonCalculator);
+        buttonCal = findViewById(R.id.buttonCalculator);
         buttonCal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,9 +42,8 @@ public class ScienceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_science);
 
         startCalculator();
-
         initControls();
-        // startScience();
+
 
         // disable keyboard on edit text boxes
         tvExpression.requestFocus();
