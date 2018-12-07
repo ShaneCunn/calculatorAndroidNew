@@ -7,16 +7,31 @@
     tools:context="com.construction.calculator.ScienceActivity">
 
     <EditText
-        android:id="@+id/displayTV"
+        android:id="@+id/TVExpression"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="58dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:editable="false"
+        android:textAlignment="textEnd"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/tvDisplay"
+        android:layout_width="0dp"
+        android:layout_height="153dp"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:clickable="true"
         android:editable="false"
-        android:text="@string/defaultTextvalue"
         android:textAlignment="textEnd"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -24,7 +39,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/TVExpression"
+        app:layout_constraintVertical_bias="0.0" />
 
 
     <LinearLayout
