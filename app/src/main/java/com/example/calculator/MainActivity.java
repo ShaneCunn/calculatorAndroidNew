@@ -15,6 +15,7 @@ import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class MainActivity extends AppCompatActivity {
     Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button0, buttonDot, buttonClear,
@@ -64,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
 
         initControls();
         //   startCalculator();
-        initControls();
-        // startScience();
+
+        startScience();
 
         // disable keyboard on edit text boxes
         tvEpression.requestFocus();
@@ -177,14 +178,14 @@ public class MainActivity extends AppCompatActivity {
         buttonMulti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setDisplayValue(" * ", false);
+                setDisplayValue(" x ", false);
                 hasDecimal = false;
             }
         });
         buttonDivide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setDisplayValue(" / ", false);
+                setDisplayValue(" \u00F7 ", false);
                 hasDecimal = false;
             }
         });
@@ -193,9 +194,23 @@ public class MainActivity extends AppCompatActivity {
         buttonPercent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                valueOne = Double.parseDouble(tvEpression.getText() + "");
+
+
+                try {
+                    com.udojava.evalex.Expression expression =
+                            new com.udojava.evalex.Expression(tvEpression.getText().toString());
+
+                    BigDecimal beforeResult = expression.eval();
+
+                    BigDecimal perc = new BigDecimal("100");
+                    BigDecimal result = beforeResult.divide(perc, 2, BigDecimal.ROUND_FLOOR);
+                    tvResult.setText(String.valueOf(result));
+                } catch (Exception e) {
+                    Log.d("Exception", " message is: " + e.getMessage());
+                }
+               /* valueOne = Double.parseDouble(tvEpression.getText() + "");
                 result = valueOne / 100;
-                tvEpression.setText(valueOne + String.valueOf(result));
+                tvEpression.setText(valueOne + String.valueOf(result));*/
             }
         });
 
@@ -294,10 +309,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void mathEvalution() {
+
+        String input = tvEpression.getText().toString();
+
+        if (input.contains("x")) {
+
+            input = input.replaceAll("x", "*");
+        }
+
+        if (input.contains("\u00F7")) {
+
+            input = input.replaceAll("\u00F7", "/");
+        }
         try {
             com.udojava.evalex.Expression expression =
-                    new com.udojava.evalex.Expression(tvEpression.getText().toString());
-            // String result = expression.eval().toString();
+                    new com.udojava.evalex.Expression(input);
+
             BigDecimal result = expression.eval();
             tvResult.setText(String.valueOf(result));
         } catch (Exception e) {
@@ -305,10 +332,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private double getParseDouble(String s) {
-        if (s == null || s.isEmpty())
-            return 0.0;
-        else
-            return Double.parseDouble(s);
-    }
+
 }
