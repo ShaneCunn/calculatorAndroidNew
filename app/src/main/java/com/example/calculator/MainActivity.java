@@ -3,7 +3,6 @@ package com.example.calculator;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -11,11 +10,7 @@ import android.widget.EditText;
 
 import com.construction.calculator.ScienceActivity;
 
-import net.objecthunter.exp4j.Expression;
-import net.objecthunter.exp4j.ExpressionBuilder;
-
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 public class MainActivity extends AppCompatActivity {
     Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button0, buttonDot, buttonClear,
@@ -245,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                mathEvalution();
+                mathEvaluation();
            /*     try {
                     net.objecthunter.exp4j.Expression expressionValue;
                     expressionValue = new ExpressionBuilder(tvEpression.getText().toString()).build();
@@ -265,20 +260,20 @@ public class MainActivity extends AppCompatActivity {
 
         if (!tvResult.toString().isEmpty()) {
             tvEpression.setText("");
-            mathEvalution();
+            mathEvaluation();
         }
 
         if (canClear == false) {
             tvResult.setText("");
             tvEpression.setText(testanswer + resultText);
 
-            mathEvalution();
+            mathEvaluation();
         } else {
             tvEpression.setText(tvResult.getText());
             tvEpression.setText(testanswer + resultText);
             tvResult.setText("");
 
-            mathEvalution();
+            mathEvaluation();
         }
 
 
@@ -308,7 +303,7 @@ public class MainActivity extends AppCompatActivity {
         tvEpression = (EditText) findViewById(R.id.TVExpression);
     }
 
-    private void mathEvalution() {
+    private void mathEvaluation() {
 
         String input = tvEpression.getText().toString();
 
