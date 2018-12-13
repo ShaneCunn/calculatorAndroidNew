@@ -16,11 +16,13 @@ import java.math.BigDecimal;
 public class ScienceActivity extends AppCompatActivity {
 
     Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button0, buttonDot, buttonClear,
-            buttonPlus, buttonMinus, buttonDivide, buttonMulti, buttonEqual, buttonPercent, buttonDelete, buttonCal;
+            buttonPlus, buttonMinus, buttonDivide, buttonMulti, buttonEqual, buttonPercent, buttonDelete, buttonCal,
+            buttonSqRoot;
 
     EditText tvResult, tvExpression;
 
     boolean hasDecimal;
+    String input;
 
     public void startCalculator() {
 
@@ -181,6 +183,12 @@ public class ScienceActivity extends AppCompatActivity {
 
                     BigDecimal perc = new BigDecimal("100");
                     BigDecimal result = beforeResult.divide(perc, 2, BigDecimal.ROUND_FLOOR);
+
+
+                    setDisplayValue("% ", false);
+                    hasDecimal = false;
+
+
                     tvResult.setText(String.valueOf(result));
                 } catch (Exception e) {
                     Log.d("Exception", " message is: " + e.getMessage());
@@ -220,7 +228,55 @@ public class ScienceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                mathEvaluation();
+                input = tvExpression.getText().toString();
+
+                if (input.contains("x")) {
+
+                    input = input.replaceAll("x", "*");
+                }
+
+
+                if (input.contains("\u00F7")) {
+
+                    input = input.replaceAll("\u00F7", "/");
+                }
+
+                if (input.contains("\u221a")) {
+
+                    input = input.replaceAll("\u221a", "SQRT");
+                }
+                try {
+                    com.udojava.evalex.Expression expression =
+                            new com.udojava.evalex.Expression(input);
+
+                    BigDecimal result = expression.eval();
+                    tvExpression.setText(String.valueOf(result));
+                    tvResult.setText(String.valueOf(""));
+                } catch (Exception e) {
+                    Log.d("Exception", " message is: " + e.getMessage());
+                }
+
+            }
+        });
+
+        buttonSqRoot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setDisplayValue("\u221a", false);
+
+
+                //  Log.d("input", " message is: sqrt" );
+
+            /*    try {
+                    com.udojava.evalex.Expression expression =
+                            new com.udojava.evalex.Expression("SQRT(12)");
+
+                    BigDecimal result = expression.eval();
+                    tvExpression.setText(String.valueOf("SQRT(12)"));
+                    tvResult.setText(String.valueOf(result));
+                } catch (Exception e) {
+                    Log.d("Exception", " message is: " + e.getMessage());
+                }*/
 
             }
         });
@@ -252,32 +308,35 @@ public class ScienceActivity extends AppCompatActivity {
     }
 
     private void initControls() {
-        button1 = (Button) findViewById(R.id.button1);
-        button2 = (Button) findViewById(R.id.button2);
-        button3 = (Button) findViewById(R.id.button3);
-        button4 = (Button) findViewById(R.id.button4);
-        button5 = (Button) findViewById(R.id.button5);
-        button6 = (Button) findViewById(R.id.button6);
-        button7 = (Button) findViewById(R.id.button7);
-        button8 = (Button) findViewById(R.id.button8);
-        button9 = (Button) findViewById(R.id.button9);
-        button0 = (Button) findViewById(R.id.button0);
-        buttonDot = (Button) findViewById(R.id.buttonDot);
-        buttonClear = (Button) findViewById(R.id.buttonAC);
-        buttonPlus = (Button) findViewById(R.id.buttonPlus);
-        buttonMinus = (Button) findViewById(R.id.buttonMinus);
-        buttonDivide = (Button) findViewById(R.id.buttonDivide);
-        buttonMulti = (Button) findViewById(R.id.buttonMulti);
-        buttonEqual = (Button) findViewById(R.id.buttonEqual);
-        buttonPercent = (Button) findViewById(R.id.buttonPercent);
-        buttonDelete = (Button) findViewById(R.id.buttonDel);
-        tvResult = (EditText) findViewById(R.id.tvDisplay);
-        tvExpression = (EditText) findViewById(R.id.TVExpression);
+        button1 = findViewById(R.id.button1);
+        button2 = findViewById(R.id.button2);
+        button3 = findViewById(R.id.button3);
+        button4 = findViewById(R.id.button4);
+        button5 = findViewById(R.id.button5);
+        button6 = findViewById(R.id.button6);
+        button7 = findViewById(R.id.button7);
+        button8 = findViewById(R.id.button8);
+        button9 = findViewById(R.id.button9);
+        button0 = findViewById(R.id.button0);
+        buttonDot = findViewById(R.id.buttonDot);
+        buttonClear = findViewById(R.id.buttonAC);
+        buttonPlus = findViewById(R.id.buttonPlus);
+        buttonMinus = findViewById(R.id.buttonMinus);
+        buttonDivide = findViewById(R.id.buttonDivide);
+        buttonMulti = findViewById(R.id.buttonMulti);
+        buttonEqual = findViewById(R.id.buttonEqual);
+        buttonPercent = findViewById(R.id.buttonPercent);
+        buttonDelete = findViewById(R.id.buttonDel);
+
+        buttonSqRoot = findViewById(R.id.buttonSqX);
+
+        tvResult = findViewById(R.id.tvDisplay);
+        tvExpression = findViewById(R.id.TVExpression);
     }
 
     private void mathEvaluation() {
 
-        String input = tvExpression.getText().toString();
+        input = tvExpression.getText().toString();
 
         if (input.contains("x")) {
 
@@ -288,6 +347,14 @@ public class ScienceActivity extends AppCompatActivity {
 
             input = input.replaceAll("\u00F7", "/");
         }
+
+        if (input.contains("\u221a")) {
+
+            input = input.replaceAll("\u221a", "SQRT( " + input + " )");
+            Log.d("input", " message is: sqrt2");
+        }
+
+        //    input = "SQRT(12)";
         try {
             com.udojava.evalex.Expression expression =
                     new com.udojava.evalex.Expression(input);
